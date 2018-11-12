@@ -73,6 +73,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             val hView:View = navigationView!!.getHeaderView(0);
             val nav_user:TextView = hView.findViewById(R.id.userEmail);
             nav_user.setText(emailUser)
+        }else{
+            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG)
         }
     }
 
