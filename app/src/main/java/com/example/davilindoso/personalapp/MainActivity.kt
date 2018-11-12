@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
     }
 
-    private fun recuperarDadosUsuario(){
+    private fun recuperarDadosUsuario() {
         auth = FirebaseAuth.getInstance()
         user = auth.currentUser
 
@@ -58,24 +58,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         if (displayName != null) {
-            val navigationView:NavigationView? = findViewById(R.id.nav_view)
-            val hView:View = navigationView!!.getHeaderView(0)
+            val navigationView: NavigationView? = findViewById(R.id.nav_view)
+            val hView: View = navigationView!!.getHeaderView(0)
             nav_user = null
             nav_user = hView.findViewById(R.id.userId)
             nav_user!!.setText(displayName)
-        }else{
-            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Não foi possível recuperar dados do Usuário", Toast.LENGTH_LONG).show()
         }
 
-        if(emailUser != null){
+        if (emailUser != null) {
 
-            val navigationView:NavigationView? = findViewById(R.id.nav_view)
-            val hView:View = navigationView!!.getHeaderView(0)
+            val navigationView: NavigationView? = findViewById(R.id.nav_view)
+            val hView: View = navigationView!!.getHeaderView(0)
             nav_user = null
             nav_user = hView.findViewById(R.id.userEmail)
             nav_user!!.setText(emailUser)
-        }else{
-            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG).show()
+        } else {
+            Toast.makeText(this, "Não foi possível recuperar dados do Usuário", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -107,10 +107,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_alunos -> {
-                // Handle the camera action
+                loadAlunosFragment(fragAluno = AlunosFragment())
             }
             R.id.nav_exercicios -> {
-
+                loadExerciciosFragment(fragExercicio = ExerciciosFragment())
             }
             R.id.nav_info -> {
 
@@ -119,5 +119,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    private fun loadAlunosFragment(fragAluno: AlunosFragment) {
+        val fm = supportFragmentManager.beginTransaction()
+        fm.replace(R.id.frameLayout, fragAluno)
+        fm.commit()
+    }
+
+    private fun loadExerciciosFragment(fragExercicio: ExerciciosFragment) {
+        val fm = supportFragmentManager.beginTransaction()
+        fm.replace(R.id.frameLayout, fragExercicio)
+        fm.commit()
     }
 }
