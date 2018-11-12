@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
-    <string name="error">Error</string>
+    <string name="error"></string>
 
     <array name="list_menu_aluno">
         <item>Cadastrar Aluno</item>
