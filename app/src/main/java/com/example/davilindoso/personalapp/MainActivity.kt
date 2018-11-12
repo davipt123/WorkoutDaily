@@ -13,16 +13,14 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var txtNome: TextView
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
+    private var nav_user: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,9 +47,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         user = auth.currentUser
 
         var displayName = user!!.displayName
-        var emailUser = user!!.email
+        val emailUser = user!!.email
         var profileUri = user!!.photoUrl
-        user!!.providerData.forEach() {
+        user!!.providerData.forEach {
             if (displayName == null && it.displayName != null) {
                 displayName = it.displayName
             }
@@ -60,21 +58,24 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
         }
         if (displayName != null) {
-            val navigationView:NavigationView? = findViewById(R.id.nav_view);
-            val hView:View = navigationView!!.getHeaderView(0);
-            val nav_user:TextView = hView.findViewById(R.id.userId);
-            nav_user.setText(displayName)
+            val navigationView:NavigationView? = findViewById(R.id.nav_view)
+            val hView:View = navigationView!!.getHeaderView(0)
+            nav_user = null
+            nav_user = hView.findViewById(R.id.userId)
+            nav_user!!.setText(displayName)
         }else{
-            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG)
+            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG).show()
         }
 
         if(emailUser != null){
-            val navigationView:NavigationView? = findViewById(R.id.nav_view);
-            val hView:View = navigationView!!.getHeaderView(0);
-            val nav_user:TextView = hView.findViewById(R.id.userEmail);
-            nav_user.setText(emailUser)
+
+            val navigationView:NavigationView? = findViewById(R.id.nav_view)
+            val hView:View = navigationView!!.getHeaderView(0)
+            nav_user = null
+            nav_user = hView.findViewById(R.id.userEmail)
+            nav_user!!.setText(emailUser)
         }else{
-            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG)
+            Toast.makeText(this,"Não foi possível recuperar dados do Usuário",Toast.LENGTH_LONG).show()
         }
     }
 
