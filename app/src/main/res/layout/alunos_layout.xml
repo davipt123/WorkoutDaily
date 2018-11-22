@@ -7,7 +7,6 @@
     <ListView
             android:id="@+id/listaMenuAluno"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:entries="@array/list_menu_aluno"/>
+            android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

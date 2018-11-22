@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_user = hView.findViewById(R.id.userId)
             nav_user!!.setText(displayName)
         } else {
-            Toast.makeText(this, "Não foi possível recuperar dados do Usuário", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Não foi possível recuperar nome do Usuário", Toast.LENGTH_LONG).show()
         }
 
         if (emailUser != null) {
@@ -78,7 +78,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             nav_user = hView.findViewById(R.id.userEmail)
             nav_user!!.setText(emailUser)
         } else {
-            Toast.makeText(this, "Não foi possível recuperar dados do Usuário", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Não foi possível recuperar email do Usuário", Toast.LENGTH_LONG).show()
         }
     }
 
