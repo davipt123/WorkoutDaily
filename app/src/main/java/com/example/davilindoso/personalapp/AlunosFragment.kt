@@ -1,5 +1,6 @@
 package com.example.davilindoso.personalapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -23,7 +24,7 @@ class AlunosFragment : Fragment() {
 
         mListView.setOnItemClickListener { parent, view, position, id ->
             when(position){
-                0 -> Toast.makeText(context,"cadastrando",Toast.LENGTH_SHORT).show()
+                0 ->  startActivity(Intent(context, CadastrarAlunoActivity::class.java))
                 1 -> Toast.makeText(context,"editando",Toast.LENGTH_SHORT).show()
                 2 -> Toast.makeText(context,"excluindo",Toast.LENGTH_SHORT).show()
                 else -> Toast.makeText(context,"ta me zoando?",Toast.LENGTH_SHORT).show()

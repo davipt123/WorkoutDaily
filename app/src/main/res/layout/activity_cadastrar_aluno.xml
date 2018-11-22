@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".CadastrarAlunoActivity">
+
+    <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"/>
+
+    <EditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nome do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="textPersonName"
+    />
+
+    <EditText
+            android:id="@+id/txtIdade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Idade do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="text|number"
+    />
+
+    <EditText
+            android:id="@+id/txtAltura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Altura do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="text|number"
+    />
+
+    <EditText
+            android:id="@+id/txtPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Peso do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="text|number"
+    />
+
+    <EditText
+            android:id="@+id/txtCpf"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Cpf do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="text|number"
+    />
+
+    <EditText
+            android:id="@+id/txtTelefone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Telefone do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="text|number"
+    />
+
+    <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Email do Aluno"
+            android:layout_margin="10dp"
+            android:inputType="textEmailAddress"
+    />
+
+    <EditText
+            android:id="@+id/txtSenha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Senha"
+            android:layout_margin="10dp"
+            android:inputType="text|number"
+    />
+
+    <Button
+            android:onClick="register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar Aluno"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"/>
+
+</LinearLayout>
