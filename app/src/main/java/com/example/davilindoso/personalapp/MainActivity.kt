@@ -1,8 +1,10 @@
 package com.example.davilindoso.personalapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -21,6 +23,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var auth: FirebaseAuth
     private var user: FirebaseUser? = null
     private var nav_user: TextView? = null
+    private var menuSelecionado: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +86,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
             drawer_layout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            voltar()
+        }
+    }
+
+    fun voltar(){
+        when (menuSelecionado) {
+            AlunosFragment().id -> {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            ExerciciosFragment().id -> {
+                startActivity(Intent(this, MainActivity::class.java))
+            }
+            else -> Toast.makeText(this, "Ta maluco?", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -108,9 +123,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_alunos -> {
                 loadAlunosFragment(fragAluno = AlunosFragment())
+                menuSelecionado = AlunosFragment().id
             }
             R.id.nav_exercicios -> {
                 loadExerciciosFragment(fragExercicio = ExerciciosFragment())
+                menuSelecionado = ExerciciosFragment().id
             }
             R.id.nav_info -> {
 
