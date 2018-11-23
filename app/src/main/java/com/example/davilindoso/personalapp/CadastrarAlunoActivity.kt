@@ -3,7 +3,6 @@ package com.example.davilindoso.personalapp
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
 import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
@@ -39,7 +38,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
 
     }
 
-    fun inicializarComponentes() {
+    private fun inicializarComponentes() {
         txtName = findViewById(R.id.txtName)
         txtIdade = findViewById(R.id.txtIdade)
         txtAltura = findViewById(R.id.txtAltura)
@@ -55,7 +54,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
         cadastrarNovoAluno()
     }
 
-    fun cadastrarNovoAluno() {
+    private fun cadastrarNovoAluno() {
         val name: String = txtName.text.toString()
         val idade: String = txtIdade.text.toString()
         val altura: String = txtAltura.text.toString()
@@ -65,8 +64,8 @@ class CadastrarAlunoActivity : AppCompatActivity() {
         val email: String = txtEmail.text.toString()
         val password: String = txtPassword.text.toString()
 
-        var credenciais: Boolean = !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
-        var informacoesPessoais: Boolean =
+        val credenciais: Boolean = !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)
+        val informacoesPessoais: Boolean =
             !TextUtils.isEmpty(name) && !TextUtils.isEmpty(idade) && !TextUtils.isEmpty(altura)
                     && !TextUtils.isEmpty(peso) && !TextUtils.isEmpty(cpf) && !TextUtils.isEmpty(telefone)
         if (credenciais && informacoesPessoais) {
@@ -88,24 +87,15 @@ class CadastrarAlunoActivity : AppCompatActivity() {
                         userDB.child("idade").setValue(idade)
                         userDB.child("altura").setValue(altura)
                         userDB.child("peso").setValue(peso)
-                        userDB.child("cpf").setValue(cpf)
                         userDB.child("telefone").setValue(telefone)
+                        userDB.child("cpf").setValue(cpf)
                         userDB.child("email").setValue(email)
 
-                        val profileUpdates = UserProfileChangeRequest.Builder()
-                            .setDisplayName(name)
-                            .build()
-                        user!!.updateProfile(profileUpdates)
+                        auth.signOut()
+                        Toast.makeText(this,"Cadastro do aluno efetuado com sucesso. Necesário se reconectar",Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, LoginActivity::class.java))
                     }
                 }
-
-            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    startActivity(Intent(this, MainActivity::class.java))
-                } else {
-                    Toast.makeText(this, "Falha de autenticação", Toast.LENGTH_LONG)
-                }
-            }
         }
     }
 

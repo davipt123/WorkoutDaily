@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var user: FirebaseUser? = null
     private var nav_user: TextView? = null
     private var menuSelecionado: Int? = null
+    private lateinit var senha : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

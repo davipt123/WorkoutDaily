@@ -30,6 +30,12 @@ class LoginActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         auth = FirebaseAuth.getInstance()
 
+        //if(intent.extras != null){
+        // txtUser.setText(intent.extras.getString("emailAluno"))
+        //txtPassword.setText(intent.extras.getString("cadastroAluno"))
+        //loginUser()
+        //}
+
     }
 
     fun forgotPassword(view: View) {
