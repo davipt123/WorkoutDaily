@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ProgressBar
 import com.google.firebase.auth.FirebaseAuth
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -30,6 +31,8 @@ class LoginActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         auth = FirebaseAuth.getInstance()
 
+        var myImageView : ImageView = findViewById(R.id.myImageView)
+        myImageView.setImageResource(R.drawable.logo_workout_daily)
         //if(intent.extras != null){
         // txtUser.setText(intent.extras.getString("emailAluno"))
         //txtPassword.setText(intent.extras.getString("cadastroAluno"))

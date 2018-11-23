@@ -18,7 +18,7 @@ class AlunosFragment : Fragment() {
         val view = LayoutInflater.from(container?.context).inflate(R.layout.alunos_layout, container, false)
         val mListView: ListView = view.findViewById(R.id.listaMenuAluno)
 
-        val values = arrayListOf("Cadastrar Aluno","Editar Aluno","Excluir Aluno")
+        val values = arrayListOf("Cadastrar Aluno")
         val adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, values)
         mListView.adapter = adapter
 
