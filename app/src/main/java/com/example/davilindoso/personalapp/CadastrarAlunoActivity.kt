@@ -1,5 +1,6 @@
 package com.example.davilindoso.personalapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Message
@@ -7,6 +8,7 @@ import android.text.TextUtils
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -33,7 +35,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
         inicializarComponentes()
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
-        dbReference = database.reference.child("user")
+
 
     }
 
@@ -70,11 +72,18 @@ class CadastrarAlunoActivity : AppCompatActivity() {
         if (credenciais && informacoesPessoais) {
             progressBar.visibility = View.VISIBLE
 
+            var user: FirebaseUser? = auth.currentUser
+            dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
+
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
-                    val user: FirebaseUser? = auth.currentUser
+
                     if (task.isComplete) {
+                        user = auth.currentUser
+                        verifyEmail(user)
+
                         val userDB = dbReference.child(user?.uid.toString())
+
                         userDB.child("name").setValue(name)
                         userDB.child("idade").setValue(idade)
                         userDB.child("altura").setValue(altura)
@@ -82,15 +91,33 @@ class CadastrarAlunoActivity : AppCompatActivity() {
                         userDB.child("cpf").setValue(cpf)
                         userDB.child("telefone").setValue(telefone)
                         userDB.child("email").setValue(email)
-                        userDB.child("password").setValue(password)
 
                         val profileUpdates = UserProfileChangeRequest.Builder()
                             .setDisplayName(name)
                             .build()
                         user!!.updateProfile(profileUpdates)
                     }
-
                 }
+
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    startActivity(Intent(this, MainActivity::class.java))
+                } else {
+                    Toast.makeText(this, "Falha de autenticação", Toast.LENGTH_LONG)
+                }
+            }
         }
+    }
+
+    private fun verifyEmail(user: FirebaseUser?) {
+        user?.sendEmailVerification()
+            ?.addOnCompleteListener(this) { task ->
+
+                if (task.isComplete) {
+                    Toast.makeText(this, "Email enviado", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Erro ao enviar email", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 }
