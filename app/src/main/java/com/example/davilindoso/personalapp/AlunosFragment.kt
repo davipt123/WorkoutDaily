@@ -18,16 +18,16 @@ class AlunosFragment : Fragment() {
         val view = LayoutInflater.from(container?.context).inflate(R.layout.alunos_layout, container, false)
         val mListView: ListView = view.findViewById(R.id.listaMenuAluno)
 
-        val values = arrayListOf("Cadastrar Aluno") 
+        val values = arrayListOf("Cadastrar Aluno","Alunos")
         val adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, values)
         mListView.adapter = adapter
 
         mListView.setOnItemClickListener { parent, view, position, id ->
-            when(position){
-                0 ->  startActivity(Intent(context, CadastrarAlunoActivity::class.java))
-                1 -> Toast.makeText(context,"editando",Toast.LENGTH_SHORT).show()
-                2 -> Toast.makeText(context,"excluindo",Toast.LENGTH_SHORT).show()
-                else -> Toast.makeText(context,"ta me zoando?",Toast.LENGTH_SHORT).show()
+            when (position) {
+                0 -> startActivity(Intent(context, CadastrarAlunoActivity::class.java))
+                1 -> startActivity(Intent(context, ConsultarAlunosActivity::class.java))
+                2 -> Toast.makeText(context, "excluindo", Toast.LENGTH_SHORT).show()
+                else -> Toast.makeText(context, "ta me zoando?", Toast.LENGTH_SHORT).show()
             }
         }
         return view

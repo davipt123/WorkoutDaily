@@ -46,8 +46,9 @@
         </activity>
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".ForgotPassActivity"/>
-
         <activity android:name=".CadastrarAlunoActivity">
+        </activity>
+        <activity android:name=".ConsultarAlunosActivity">
         </activity>
     </application>
 
