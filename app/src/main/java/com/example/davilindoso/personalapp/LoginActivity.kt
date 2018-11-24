@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         auth = FirebaseAuth.getInstance()
 
-        var myImageView : ImageView = findViewById(R.id.myImageView)
+        val myImageView : ImageView = findViewById(R.id.myImageView)
         myImageView.setImageResource(R.drawable.logo_workout_daily)
         //if(intent.extras != null){
         // txtUser.setText(intent.extras.getString("emailAluno"))
@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     action()
                 } else {
-                    Toast.makeText(this, "Falha de autenticação", Toast.LENGTH_LONG)
+                    Toast.makeText(this, "Falha de autenticação", Toast.LENGTH_LONG).show()
                 }
             }
         }

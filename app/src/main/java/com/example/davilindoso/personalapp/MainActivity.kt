@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
-import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -24,7 +23,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var user: FirebaseUser? = null
     private var nav_user: TextView? = null
     private var menuSelecionado: Int? = null
-    private lateinit var senha : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

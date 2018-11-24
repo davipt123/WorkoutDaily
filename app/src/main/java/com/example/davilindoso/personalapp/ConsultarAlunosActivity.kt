@@ -19,7 +19,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         setContentView(R.layout.activity_consultar_alunos)
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
-        var user: FirebaseUser? = auth.currentUser
+        val user: FirebaseUser? = auth.currentUser
         dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
         listaAlunos = mutableListOf()
         val mListView: ListView = findViewById(R.id.listaAlunosCadastrados)
@@ -28,14 +28,14 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     }
 
     private fun retornarEmailAlunos(): MutableList<String> {
-        var listaEmailAlunos: MutableList<String> = mutableListOf()
+        val listaEmailAlunos: MutableList<String> = mutableListOf()
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (a in snapshot.children) {
                         val aluno = a.getValue(Aluno::class.java)
 //                        listaAlunos.add(aluno!!)
-                        var emailAluno = getEmailAlunos(aluno!!)
+                        val emailAluno = getEmailAlunos(aluno!!)
                         listaEmailAlunos.add(emailAluno)
                     }
                 }

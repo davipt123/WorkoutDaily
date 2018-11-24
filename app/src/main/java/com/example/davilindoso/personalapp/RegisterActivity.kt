@@ -12,8 +12,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import org.w3c.dom.Text
-import java.lang.ref.PhantomReference
 import com.google.firebase.auth.UserProfileChangeRequest
 
 
