@@ -23,6 +23,7 @@
             android:hint="Nome do Aluno"
             android:layout_margin="10dp"
             android:inputType="textPersonName"
+            android:maxLength="45"
     />
 
     <EditText
@@ -32,7 +33,8 @@
             android:ems="10"
             android:hint="Idade do Aluno"
             android:layout_margin="10dp"
-            android:inputType="text|number"
+            android:inputType="number"
+            android:maxLength="3"
     />
 
     <EditText
@@ -40,9 +42,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Altura do Aluno"
+            android:hint="Altura do Aluno(centímetros)"
             android:layout_margin="10dp"
-            android:inputType="text|number"
+            android:inputType="number"
+            android:maxLength="3"
     />
 
     <EditText
@@ -50,9 +53,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Peso do Aluno"
+            android:hint="Peso do Aluno(kg)"
             android:layout_margin="10dp"
-            android:inputType="text|number"
+            android:inputType="number"
+            android:maxLength="3"
     />
 
     <EditText
@@ -62,7 +66,8 @@
             android:ems="10"
             android:hint="Cpf do Aluno"
             android:layout_margin="10dp"
-            android:inputType="text|number"
+            android:inputType="number"
+            android:maxLength="11"
     />
 
     <EditText
@@ -72,7 +77,8 @@
             android:ems="10"
             android:hint="Telefone do Aluno"
             android:layout_margin="10dp"
-            android:inputType="text|number"
+            android:inputType="number"
+            android:maxLength="12"
     />
 
     <EditText
@@ -83,6 +89,7 @@
             android:hint="Email do Aluno"
             android:layout_margin="10dp"
             android:inputType="textEmailAddress"
+            android:maxLength="45"
     />
 
     <EditText
@@ -92,7 +99,8 @@
             android:ems="10"
             android:hint="Senha"
             android:layout_margin="10dp"
-            android:inputType="text|number"
+            android:inputType="textPassword"
+            android:maxLength="25"
     />
 
     <Button
