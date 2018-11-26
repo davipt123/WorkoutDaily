@@ -1,5 +1,6 @@
 package com.example.davilindoso.personalapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -25,6 +26,13 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         val mListView: ListView = findViewById(R.id.listaAlunosCadastrados)
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, retornarEmailAlunos())
         mListView.adapter = adapter
+
+        mListView.setOnItemClickListener { parent, view, position, id ->
+            val it: Intent = Intent(this, PerfilAlunoActivity::class.java)
+            val valorLinha = mListView.adapter.getItem(position)
+            it.putExtra("id", valorLinha.toString())
+            startActivity(it)
+        }
     }
 
     private fun retornarEmailAlunos(): MutableList<String> {
