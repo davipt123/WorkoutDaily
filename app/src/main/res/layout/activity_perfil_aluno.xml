@@ -8,10 +8,39 @@
               tools:context=".PerfilAlunoActivity">
 
     <TextView
+            android:id="@+id/alturaAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    <TextView
+            android:id="@+id/cpfAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    <TextView
             android:id="@+id/emailAluno"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Perfil Aluno"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    <TextView
+            android:id="@+id/idadeAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    <TextView
+            android:id="@+id/nomeAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    <TextView
+            android:id="@+id/pesoAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"/>
+    <TextView
+            android:id="@+id/telefoneAluno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"/>
 
 </LinearLayout>

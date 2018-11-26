@@ -30,7 +30,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         mListView.setOnItemClickListener { parent, view, position, id ->
             val it: Intent = Intent(this, PerfilAlunoActivity::class.java)
             val valorLinha = mListView.adapter.getItem(position)
-            it.putExtra("id", valorLinha.toString())
+            it.putExtra("valorLinha", valorLinha.toString())
             startActivity(it)
         }
     }
