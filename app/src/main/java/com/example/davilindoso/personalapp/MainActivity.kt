@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setTitle(R.string.workout_daily)
         setSupportActionBar(toolbar)
         recuperarDadosUsuario()
 
@@ -89,7 +90,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    fun voltar(){
+    fun voltar() {
         when (menuSelecionado) {
             AlunosFragment().id -> {
                 startActivity(Intent(this, MainActivity::class.java))
@@ -123,10 +124,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_alunos -> {
                 loadAlunosFragment(fragAluno = AlunosFragment())
                 menuSelecionado = AlunosFragment().id
+                setTitle(R.string.alunos)
             }
             R.id.nav_exercicios -> {
                 loadExerciciosFragment(fragExercicio = ExerciciosFragment())
                 menuSelecionado = ExerciciosFragment().id
+                setTitle(R.string.exercicios)
             }
             R.id.nav_info -> {
 

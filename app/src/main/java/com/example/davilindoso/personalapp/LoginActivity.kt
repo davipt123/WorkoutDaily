@@ -22,6 +22,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
+        setTitle(R.string.login)
 
         txtUser = findViewById(R.id.txtUser)
         txtPassword = findViewById(R.id.txtPassword)

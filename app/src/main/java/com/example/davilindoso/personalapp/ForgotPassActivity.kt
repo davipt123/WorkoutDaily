@@ -19,6 +19,7 @@ class ForgotPassActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_forgot_pass)
+        setTitle(R.string.redefinir_senha)
         txtEmail = findViewById(R.id.txtEmail)
         progressBar = findViewById(R.id.progressBar)
         auth = FirebaseAuth.getInstance()

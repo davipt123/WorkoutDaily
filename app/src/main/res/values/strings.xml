@@ -8,6 +8,12 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_maps">Map</string>
     <string name="error"></string>
+    <string name="workout_daily">Workout Daily</string>
+    <string name="alunos">Alunos</string>
+    <string name="exercicios">Exercicios</string>
+    <string name="registrar">Registrar</string>
+    <string name="login">Login</string>
+    <string name="redefinir_senha">Redefinir Senha</string>
 
     <array name="list_menu_aluno">
         <item>Cadastrar Aluno</item>
