@@ -2,6 +2,7 @@ package com.example.davilindoso.personalapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -56,7 +57,13 @@ class PerfilAlunoActivity : AppCompatActivity() {
         idade = findViewById(R.id.idadeAluno)
         peso = findViewById(R.id.pesoAluno)
         telefone = findViewById(R.id.telefoneAluno)
+        recuperarPictureUser()
 
+    }
+
+    private fun recuperarPictureUser(){
+        val myImageView : ImageView = findViewById(R.id.pictureUsuario)
+        myImageView.setImageResource(R.drawable.picture_user)
     }
 
     private fun dadosAlunoDTO(snapshot: DataSnapshot) {

@@ -5,42 +5,57 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".PerfilAlunoActivity">
+              tools:context=".PerfilAlunoActivity"
+              android:background="@android:color/white">
+
+    <ImageView
+            android:id="@+id/pictureUsuario"
+            android:layout_marginTop="10dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="left"
+            android:background="@android:color/white"/>
 
     <TextView
             android:id="@+id/alturaAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/cpfAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/emailAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/idadeAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/nomeAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/pesoAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
     <TextView
             android:id="@+id/telefoneAluno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"/>
-
+            android:gravity="center"
+            android:layout_marginTop="20dp"/>
 </LinearLayout>
