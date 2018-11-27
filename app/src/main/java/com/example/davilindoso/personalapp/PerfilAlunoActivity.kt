@@ -22,6 +22,7 @@ private lateinit var idade: TextView
 private lateinit var nome: TextView
 private lateinit var peso: TextView
 private lateinit var telefone: TextView
+private lateinit var param: String
 
 
 class PerfilAlunoActivity : AppCompatActivity() {
@@ -42,7 +43,8 @@ class PerfilAlunoActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (a in snapshot.children) {
-                        dadosAlunoDTO(a)
+                        if (a.getValue(Aluno::class.java)!!.email.equals(param))
+                            dadosAlunoDTO(a)
                     }
                 }
             }
@@ -54,7 +56,7 @@ class PerfilAlunoActivity : AppCompatActivity() {
     }
 
     private fun inicializarComponentes() {
-        var param = intent.getStringExtra("valorLinha")
+        param = intent.getStringExtra("valorLinha")
         altura = findViewById(R.id.alturaAluno)
         cpf = findViewById(R.id.cpfAluno)
         email = findViewById(R.id.emailAluno)
