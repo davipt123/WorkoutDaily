@@ -10,16 +10,11 @@
     <string name="error"></string>
     <string name="workout_daily">Workout Daily</string>
     <string name="alunos">Alunos</string>
+    <string name="cadastrar_aluno">Cadastrar Aluno</string>
     <string name="exercicios">Exercicios</string>
     <string name="registrar">Registrar</string>
     <string name="login">Login</string>
     <string name="redefinir_senha">Redefinir Senha</string>
-
-    <array name="list_menu_aluno">
-        <item>Cadastrar Aluno</item>
-        <item>Alterar Aluno</item>
-        <item>Consultar Aluno</item>
-    </array>
 
     <array name="list_menu_exercicio">
         <item>Cadastrar Exercício</item>

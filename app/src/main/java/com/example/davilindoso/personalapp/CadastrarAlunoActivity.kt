@@ -30,6 +30,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastrar_aluno)
+        setTitle(R.string.cadastrar_aluno)
         inicializarComponentes()
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()

@@ -18,6 +18,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consultar_alunos)
+        setTitle(R.string.alunos)
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
