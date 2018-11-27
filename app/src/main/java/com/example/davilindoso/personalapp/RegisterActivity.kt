@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.auth.UserProfileChangeRequest
+import kotlin.text.StringBuilder
 
 
 class RegisterActivity : AppCompatActivity() {
@@ -54,30 +55,33 @@ class RegisterActivity : AppCompatActivity() {
         val email: String = txtEmail.text.toString()
         val password: String = txtPassword.text.toString()
 
-        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(password)) {
+        if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(lastName) && !TextUtils.isEmpty(email) && !TextUtils.isEmpty(
+                password
+            )
+        ) {
             progressBar.visibility = View.VISIBLE
 
             auth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this) { task ->
+                .addOnCompleteListener(this) { task ->
 
-                        if (task.isComplete) {
-                            val user: FirebaseUser? = auth.currentUser
-                            verifyEmail(user)
+                    if (task.isComplete) {
+                        val user: FirebaseUser? = auth.currentUser
+                        verifyEmail(user)
 
-                            val userDB = dbReference.child(user?.uid.toString())
+                        val userDB = dbReference.child(user?.uid.toString())
 
-                            userDB.child("email").setValue(email)
-                            userDB.child("name").setValue(name)
-                            userDB.child("lastName").setValue(lastName)
+                        userDB.child("email").setValue(email)
+                        userDB.child("name").setValue(name)
+                        userDB.child("lastName").setValue(lastName)
+                        val display = StringBuilder()
+                        val profileUpdates = UserProfileChangeRequest.Builder()
+                            .setDisplayName(display.append(name).append(" ").append(lastName).toString())
+                            .build()
+                        user!!.updateProfile(profileUpdates)
 
-                            val profileUpdates = UserProfileChangeRequest.Builder()
-                                    .setDisplayName(name + " " + lastName)
-                                    .build()
-                            user!!.updateProfile(profileUpdates)
-
-                            action()
-                        }
+                        action()
                     }
+                }
         }
     }
 
@@ -87,13 +91,13 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun verifyEmail(user: FirebaseUser?) {
         user?.sendEmailVerification()
-                ?.addOnCompleteListener(this) { task ->
+            ?.addOnCompleteListener(this) { task ->
 
-                    if (task.isComplete) {
-                        Toast.makeText(this, "Email enviado", Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(this, "Erro ao enviar email", Toast.LENGTH_LONG).show()
-                    }
+                if (task.isComplete) {
+                    Toast.makeText(this, "Email enviado", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this, "Erro ao enviar email", Toast.LENGTH_LONG).show()
                 }
+            }
     }
 }

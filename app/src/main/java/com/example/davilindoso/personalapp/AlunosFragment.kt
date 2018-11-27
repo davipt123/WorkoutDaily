@@ -18,7 +18,7 @@ class AlunosFragment : Fragment() {
         val mListView: ListView = view.findViewById(R.id.listaMenuAluno)
 
         val values = arrayListOf("Cadastrar Aluno","Alunos")
-        val adapter = ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, values)
+        val adapter = ArrayAdapter<String>(context!!, android.R.layout.simple_list_item_1, values)
         mListView.adapter = adapter
 
         mListView.setOnItemClickListener { parent, view, position, id ->
