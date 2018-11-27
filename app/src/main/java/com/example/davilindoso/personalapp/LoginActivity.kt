@@ -56,6 +56,7 @@ class LoginActivity : AppCompatActivity() {
                     action()
                 } else {
                     Toast.makeText(this, "Falha de autenticação", Toast.LENGTH_LONG).show()
+                    progressBar.visibility = View.INVISIBLE
                 }
             }
         }

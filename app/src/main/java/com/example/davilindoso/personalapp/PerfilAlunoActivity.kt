@@ -1,19 +1,11 @@
 package com.example.davilindoso.personalapp
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
-import android.widget.EditText
-import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.*
-
 
 private lateinit var altura: TextView
 private lateinit var cpf: TextView
@@ -43,7 +35,7 @@ class PerfilAlunoActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (a in snapshot.children) {
-                        if (a.getValue(Aluno::class.java)!!.email.equals(param))
+                        if (a.getValue(Aluno::class.java)!!.email == (param))
                             dadosAlunoDTO(a)
                     }
                 }
@@ -69,13 +61,15 @@ class PerfilAlunoActivity : AppCompatActivity() {
 
     private fun dadosAlunoDTO(snapshot: DataSnapshot) {
         val aluno = snapshot.getValue(Aluno::class.java)
-        altura.setText(aluno!!.altura)
-        cpf.setText(aluno!!.cpf)
-        email.setText(aluno!!.email)
-        nome.setText(aluno!!.name)
-        idade.setText(aluno!!.idade)
-        peso.setText(aluno!!.peso)
-        telefone.setText(aluno!!.telefone)
+        if (aluno != null) {
+            altura.text = aluno.altura
+            cpf.text = aluno.cpf
+            email.text = aluno.email
+            nome.text = aluno.name
+            idade.text = aluno.idade
+            peso.text = aluno.peso
+            telefone.text = aluno.telefone
+        }
 
     }
 
