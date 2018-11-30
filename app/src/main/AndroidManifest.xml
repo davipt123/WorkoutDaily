@@ -52,6 +52,8 @@
         </activity>
         <activity android:name=".PerfilAlunoActivity">
         </activity>
+        <activity android:name=".CadastrarExercicioActivity">
+        </activity>
     </application>
 
 </manifest>

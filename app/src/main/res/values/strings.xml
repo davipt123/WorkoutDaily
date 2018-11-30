@@ -16,10 +16,12 @@
     <string name="login">Login</string>
     <string name="redefinir_senha">Redefinir Senha</string>
 
-    <array name="list_menu_exercicio">
-        <item>Cadastrar Exercício</item>
-        <item>Alterar Exercício</item>
-        <item>Consultar Exercício</item>
+    <array name="lista_parte_corpo">
+        <item>Braço</item>
+        <item>Perna</item>
+        <item>Peito</item>
+        <item>Costas</item>
+        <item>Ombro</item>
     </array>
 
 </resources>
