@@ -28,8 +28,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/spinParteCorpo"
-            android:autofillHints="dsadas"
-            android:entries="@array/lista_parte_corpo"
+    />
+
+    <TextView
+            android:id="@+id/testView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
     />
 
 </LinearLayout>
