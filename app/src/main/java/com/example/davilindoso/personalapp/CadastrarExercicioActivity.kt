@@ -1,5 +1,6 @@
 package com.example.davilindoso.personalapp
 
+import android.graphics.Region
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -16,12 +17,16 @@ class CadastrarExercicioActivity : AppCompatActivity() {
         val context = this
         onSelectParteCorpo()
         v = findViewById(com.example.davilindoso.personalapp.R.id.testView)
-
-
     }
 
     private fun onSelectParteCorpo() {
-        val values = arrayListOf("Selecione...", "Braço", "Perna", "Peito", "Costas", "Ombro")
+
+
+        var values = arrayListOf("Selecione...")
+        Corpo.values().forEach {
+            values.add(it.nome)
+        }
+
         val spParteCorpo: Spinner = findViewById(R.id.spinParteCorpo)
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, values)
         spParteCorpo.adapter = adapter
@@ -32,32 +37,36 @@ class CadastrarExercicioActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                when (position) {
-                    0 -> {
-                        exercicio.parteDoCorpo = ""
-                        v.text = exercicio.parteDoCorpo
-                    }
-                    1 -> {
-                        exercicio.parteDoCorpo = "Braço"
-                        v.text = exercicio.parteDoCorpo
-                    }
-                    2 -> {
-                        exercicio.parteDoCorpo = "Perna"
-                        v.text = exercicio.parteDoCorpo
-                    }
-                    3 -> {
-                        exercicio.parteDoCorpo = "Peito"
-                        v.text = exercicio.parteDoCorpo
-                    }
-                    4 -> {
-                        exercicio.parteDoCorpo = "Costas"
-                        v.text = exercicio.parteDoCorpo
-                    }
-                    5 -> {
-                        exercicio.parteDoCorpo = "Ombro"
-                        v.text = exercicio.parteDoCorpo
-                    }
-                }
+                setParteDoCorpo(position)
+            }
+        }
+    }
+
+    private fun setParteDoCorpo(selecionado: Int) {
+        when (selecionado) {
+            0 -> {
+                exercicio.parteDoCorpo = ""
+                v.text = exercicio.parteDoCorpo
+            }
+            1 -> {
+                exercicio.parteDoCorpo = Corpo.BRACO.nome
+                v.text = Corpo.BRACO.nome
+            }
+            2 -> {
+                exercicio.parteDoCorpo = Corpo.COSTAS.nome
+                v.text = Corpo.COSTAS.nome
+            }
+            3 -> {
+                exercicio.parteDoCorpo = Corpo.OMBRO.nome
+                v.text = Corpo.OMBRO.nome
+            }
+            4 -> {
+                exercicio.parteDoCorpo = Corpo.PEITO.nome
+                v.text = Corpo.PEITO.nome
+            }
+            5 -> {
+                exercicio.parteDoCorpo = Corpo.PERNA.nome
+                v.text = Corpo.PERNA.nome
             }
         }
     }
