@@ -17,23 +17,45 @@
             android:layout_margin="10dp"
             android:maxLength="45"
     />
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
 
-    <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/superiorInferior"
-    />
+        <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Tipo de Exercício: "
+                android:textColor="@android:color/black"/>
 
-    <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/spinParteCorpo"
-    />
+        <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/superiorInferior"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal">
+
+        <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Parte Corporal: "
+                android:textColor="@android:color/black"/>
+
+        <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/spinParteCorpo"/>
+    </LinearLayout>
 
     <TextView
             android:id="@+id/testView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-    />
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"/>
 
 </LinearLayout>
