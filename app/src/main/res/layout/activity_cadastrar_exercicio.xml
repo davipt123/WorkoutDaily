@@ -9,13 +9,14 @@
               tools:context=".CadastrarExercicioActivity">
 
     <EditText
-            android:id="@+id/txtName"
+            android:id="@+id/txtNomeExercicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Nome do Exercício"
             android:layout_margin="10dp"
             android:maxLength="45"
+
     />
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"
@@ -24,13 +25,13 @@
         <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
-                android:text="Tipo de Exercício: "
+                android:text="Nível do Exercício: "
                 android:textColor="@android:color/black"/>
 
         <Spinner
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/superiorInferior"
+                android:id="@+id/spinNivelExercicio"
         />
 
     </LinearLayout>
@@ -51,11 +52,14 @@
                 android:id="@+id/spinParteCorpo"/>
     </LinearLayout>
 
-    <TextView
-            android:id="@+id/testView"
+    <Button
+            android:onClick="registerExercicio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"/>
+            android:text="Cadastrar Exercício"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="12dp"/>
+
 
 </LinearLayout>
