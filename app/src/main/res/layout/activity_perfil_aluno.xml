@@ -58,4 +58,15 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_marginTop="20dp"/>
+
+    <Button
+            android:onClick="registerTreino"
+            android:layout_marginLeft="10dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Novo Treino"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="12dp"/>
+
 </LinearLayout>

@@ -2,6 +2,7 @@ package com.example.davilindoso.personalapp
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.google.firebase.auth.FirebaseAuth
@@ -48,6 +49,10 @@ class PerfilAlunoActivity : AppCompatActivity() {
         })
     }
 
+    fun registerTreino(view: View) {
+        //TODO passar por parametro dados do usuario em um start intent de registro treino
+    }
+
     private fun inicializarComponentes() {
         param = intent.getStringExtra("valorLinha")
         altura = findViewById(R.id.alturaAluno)
@@ -61,8 +66,8 @@ class PerfilAlunoActivity : AppCompatActivity() {
 
     }
 
-    private fun recuperarPictureUser(){
-        val myImageView : ImageView = findViewById(R.id.pictureUsuario)
+    private fun recuperarPictureUser() {
+        val myImageView: ImageView = findViewById(R.id.pictureUsuario)
         myImageView.setImageResource(R.drawable.picture_user)
     }
 
