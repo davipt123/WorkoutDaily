@@ -54,6 +54,8 @@
         </activity>
         <activity android:name=".CadastrarExercicioActivity">
         </activity>
+        <activity android:name=".CriarTreinoActivity">
+        </activity>
     </application>
 
 </manifest>

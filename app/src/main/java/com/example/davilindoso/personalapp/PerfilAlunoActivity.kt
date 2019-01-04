@@ -1,5 +1,6 @@
 package com.example.davilindoso.personalapp
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -49,8 +50,10 @@ class PerfilAlunoActivity : AppCompatActivity() {
         })
     }
 
-    fun registerTreino(view: View) {
-        //TODO passar por parametro dados do usuario em um start intent de registro treino
+    fun abrirActivityTreino(view: View) {
+        val it = Intent(this, CriarTreinoActivity::class.java)
+        it.putExtra("emailAluno", param);
+        startActivity(it);
     }
 
     private fun inicializarComponentes() {
