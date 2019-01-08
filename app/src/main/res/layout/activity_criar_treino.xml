@@ -30,19 +30,39 @@
     </LinearLayout>
 
     <EditText android:id="@+id/numeroSerie" android:layout_width="match_parent" android:layout_height="wrap_content"
-              android:hint="Séries" android:numeric="integer" android:inputType="text|number"/>
+              android:hint="Séries" android:numeric="integer" android:maxLength="3" android:inputType="text|number"/>
 
-    <EditText android:id="@+id/numeroRepeticao" android:layout_width="match_parent" android:layout_height="wrap_content"
+    <EditText android:id="@+id/numeroRepeticao" android:numeric="integer" android:maxLength="3" android:layout_width="match_parent" android:layout_height="wrap_content"
               android:hint="Repetições"/>
 
-    <Button
-            android:onClick="adicionarExercicio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Adicionar Exercicio"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/white"
-            android:layout_marginTop="12dp"/>
+    <RelativeLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+        <Button
+                android:onClick="adicionarExercicio"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Adicionar"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:layout_marginEnd="176dp" android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true" android:layout_marginStart="4dp" android:layout_marginTop="0dp"
+        />
+
+        <Button
+                android:onClick="limparExercicio"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:text="Limpar"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:layout_alignParentTop="true" android:layout_alignParentEnd="true"
+                android:layout_marginEnd="4dp" android:layout_marginStart="42dp"
+                android:layout_marginTop="0dp"/>
+
+
+    </RelativeLayout>
+
     <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
@@ -51,15 +71,14 @@
             android:layout_marginTop="12dp"
 
     />
-
     <ScrollView
             android:id="@+id/ScrollView01"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <TextView
                 android:id="@+id/resumoTreino"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
     </ScrollView>

@@ -22,6 +22,7 @@ class CriarTreinoActivity : AppCompatActivity() {
     private lateinit var etRepeticoes: EditText
     private lateinit var spExercicios: Spinner
     private lateinit var exercicioSelecionado: Exercicio
+    private lateinit var resumoTreino: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +38,8 @@ class CriarTreinoActivity : AppCompatActivity() {
         consultarExercicios()
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, listaExercicio)
         spExercicios.adapter = adapter
+
+        resumoTreino = findViewById(R.id.resumoTreino)
 
         etSeries = findViewById(R.id.numeroSerie)
         etRepeticoes = findViewById(R.id.numeroRepeticao)
@@ -62,8 +65,12 @@ class CriarTreinoActivity : AppCompatActivity() {
         val nomeExercicio = exercicioSelecionado.nome
         val numeroSeries = etSeries.text.toString()
         val numeroRepeticoes = etRepeticoes.text.toString()
-        val tv: TextView = findViewById(R.id.resumoTreino)
-        tv.text = String.format("%s%s",tv.text,montarStringExercicio(nomeExercicio, numeroSeries, numeroRepeticoes))
+
+        resumoTreino.text = String.format("%s%s",resumoTreino.text,montarStringExercicio(nomeExercicio, numeroSeries, numeroRepeticoes))
+    }
+
+    fun limparExercicio(view: View){
+        resumoTreino.text = ""
     }
 
     private fun montarStringExercicio(nome: String, series: String, repeticoes: String): String {
