@@ -58,7 +58,7 @@
             android:layout_height="match_parent">
 
         <TextView
-                android:text="TESTE"
+                android:id="@+id/resumoTreino"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

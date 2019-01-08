@@ -3,13 +3,11 @@ package com.example.davilindoso.personalapp
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
+import org.w3c.dom.Text
 import java.nio.file.Files
 
 class CriarTreinoActivity : AppCompatActivity() {
@@ -19,6 +17,7 @@ class CriarTreinoActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var param: String
     private lateinit var listaExercicio: MutableList<String>
+    private lateinit var listaConsultaExercicios: ArrayList<Exercicio>
     private lateinit var etSeries: EditText
     private lateinit var etRepeticoes: EditText
     private lateinit var spExercicios: Spinner
@@ -51,25 +50,25 @@ class CriarTreinoActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                setExercicioSelecionado(position)
-
+                var selecionado = spExercicios.selectedItem
+                exercicioSelecionado = Exercicio()
+                exercicioSelecionado.nome = selecionado.toString()
             }
         }
     }
 
-    private fun setExercicioSelecionado(position: Int) {
-       var exercicioSelecionado = spExercicios.selectedItem
-    }
 
     fun adicionarExercicio(view: View) {
-        val numeroSeries = etSeries.text
-        val numeroRepeticoes = etRepeticoes.text
-        montarStringExercicio("rosca", numeroSeries.toString(), numeroRepeticoes.toString())
+        val nomeExercicio = exercicioSelecionado.nome
+        val numeroSeries = etSeries.text.toString()
+        val numeroRepeticoes = etRepeticoes.text.toString()
+        val tv: TextView = findViewById(R.id.resumoTreino)
+        tv.text = String.format("%s%s",tv.text,montarStringExercicio(nomeExercicio, numeroSeries, numeroRepeticoes))
     }
 
     private fun montarStringExercicio(nome: String, series: String, repeticoes: String): String {
         val descricaoExercicio =
-            String.format("Exercício: %s Séries: %s Repetições: %s", nome, series.toString(), repeticoes.toString())
+            String.format("Exercício: %s / Séries: %s / Repetições: %s %n", nome, series, repeticoes)
 
         return descricaoExercicio
     }
@@ -78,9 +77,14 @@ class CriarTreinoActivity : AppCompatActivity() {
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    listaConsultaExercicios = arrayListOf()
                     for (a in snapshot.children) {
                         val exercicio = a.getValue(Exercicio::class.java)
-                        listaExercicio.add(exercicio!!.nome)
+                        listaConsultaExercicios.add(exercicio!!)
+                    }
+
+                    for (a in listaConsultaExercicios){
+                        listaExercicio.add(a.nome)
                     }
                 }
             }
