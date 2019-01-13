@@ -10,8 +10,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 
 class CadastrarAlunoActivity : AppCompatActivity() {
     private lateinit var txtName: EditText
@@ -22,7 +21,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
     private lateinit var txtTelefone: EditText
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
-    private lateinit var progressBar: ProgressBar
+        private lateinit var progressBar: ProgressBar
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
@@ -110,4 +109,5 @@ class CadastrarAlunoActivity : AppCompatActivity() {
                 }
             }
     }
+
 }

@@ -14,6 +14,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
+    private lateinit var listaEmailAlunos: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,18 +33,18 @@ class ConsultarAlunosActivity : AppCompatActivity() {
             val it = Intent(this, PerfilAlunoActivity::class.java)
             val valorLinha = mListView.adapter.getItem(position)
             it.putExtra("valorLinha", valorLinha.toString())
+            it.putStringArrayListExtra("emails",listaEmailAlunos)
             startActivity(it)
         }
     }
 
     private fun retornarEmailAlunos(): MutableList<String> {
-        val listaEmailAlunos: MutableList<String> = mutableListOf()
+        listaEmailAlunos = ArrayList()
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
                     for (a in snapshot.children) {
                         val aluno = a.getValue(Aluno::class.java)
-//                        listaAlunos.add(aluno!!)
                         val emailAluno = getEmailAlunos(aluno!!)
                         listaEmailAlunos.add(emailAluno)
                     }

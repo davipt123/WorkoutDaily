@@ -32,7 +32,8 @@
     <EditText android:id="@+id/numeroSerie" android:layout_width="match_parent" android:layout_height="wrap_content"
               android:hint="Séries" android:numeric="integer" android:maxLength="3" android:inputType="text|number"/>
 
-    <EditText android:id="@+id/numeroRepeticao" android:numeric="integer" android:maxLength="3" android:layout_width="match_parent" android:layout_height="wrap_content"
+    <EditText android:id="@+id/numeroRepeticao" android:numeric="integer" android:maxLength="3"
+              android:layout_width="match_parent" android:layout_height="wrap_content"
               android:hint="Repetições"/>
 
     <RelativeLayout android:layout_width="match_parent"
@@ -74,7 +75,8 @@
     <ScrollView
             android:id="@+id/ScrollView01"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
         <TextView
                 android:id="@+id/resumoTreino"
@@ -83,4 +85,12 @@
 
     </ScrollView>
 
+
+    <Button
+            android:onClick="concluirTreino"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Concluir Treino"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"/>
 </LinearLayout>

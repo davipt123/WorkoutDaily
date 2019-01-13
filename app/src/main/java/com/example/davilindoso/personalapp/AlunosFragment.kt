@@ -29,6 +29,8 @@ class AlunosFragment : Fragment() {
                 else -> Toast.makeText(context, "ta me zoando?", Toast.LENGTH_SHORT).show()
             }
         }
+
+
         return view
     }
 

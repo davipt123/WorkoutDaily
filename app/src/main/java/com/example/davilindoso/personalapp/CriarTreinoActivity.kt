@@ -23,15 +23,19 @@ class CriarTreinoActivity : AppCompatActivity() {
     private lateinit var spExercicios: Spinner
     private lateinit var exercicioSelecionado: Exercicio
     private lateinit var resumoTreino: TextView
+    private lateinit var emails: ArrayList<String>
+    private lateinit var uidUsuario: String
+    private var user: FirebaseUser? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_criar_treino)
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
-        val user: FirebaseUser? = auth.currentUser
-        dbReference = database.reference.child("exercicio")
+        user = auth.currentUser
+        dbReference = database.reference.child("user").child(user!!.uid).child("exercicios")
         param = intent.getStringExtra("emailAluno")
+        emails = intent.getStringArrayListExtra("listaEmails")
 
         spExercicios = findViewById(R.id.spinExercicios)
         listaExercicio = arrayListOf("Selecione...")
@@ -69,6 +73,12 @@ class CriarTreinoActivity : AppCompatActivity() {
         resumoTreino.text = String.format("%s%s",resumoTreino.text,montarStringExercicio(nomeExercicio, numeroSeries, numeroRepeticoes))
     }
 
+    fun concluirTreino(view: View){
+        retornarEmailAlunos()
+        dbReference = database.reference.child("user").child(user!!.uid).child("alunos").child(uidUsuario).child("treino")
+        dbReference.child("exercicios").setValue(resumoTreino)
+    }
+
     fun limparExercicio(view: View){
         resumoTreino.text = ""
     }
@@ -100,5 +110,35 @@ class CriarTreinoActivity : AppCompatActivity() {
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         })
+    }
+
+
+    private fun retornarEmailAlunos(): MutableList<String> {
+        val listaEmailAlunos: MutableList<String> = mutableListOf()
+        val user: FirebaseUser? = auth.currentUser
+        dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
+        dbReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (a in snapshot.children) {
+                        val aluno = a.getValue(Aluno::class.java)
+                        val emailAluno = getEmailAlunos(aluno!!)
+                        if(emailAluno.equals(param)){
+                            uidUsuario = a.key.toString()
+                        }
+
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("loadPost:onCancelled ${databaseError.toException()}")
+            }
+        })
+        return listaEmailAlunos
+    }
+
+    private fun getEmailAlunos(aluno: Aluno): String {
+        return aluno.email
     }
 }

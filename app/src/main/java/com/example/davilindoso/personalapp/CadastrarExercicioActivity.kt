@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
@@ -13,11 +15,13 @@ class CadastrarExercicioActivity : AppCompatActivity() {
     var exercicio: Exercicio = Exercicio()
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cadastrar_exercicio)
         database = FirebaseDatabase.getInstance()
+        auth = FirebaseAuth.getInstance()
         onSelectParteCorpo()
         onSelectNivelExercicio()
     }
@@ -33,7 +37,8 @@ class CadastrarExercicioActivity : AppCompatActivity() {
         val dificuldadeExercicio = exercicio.dificuldade
         val parteCorpoExercicio = exercicio.parteDoCorpo
 
-        dbReference = database.reference.child("exercicio").child(nomeExercicio)
+        var user: FirebaseUser? = auth.currentUser
+        dbReference = database.reference.child("user").child(user!!.uid).child("exercicios").child(nomeExercicio)
 
         dbReference.child("nome").setValue(nomeExercicio)
         dbReference.child("dificuldade").setValue(dificuldadeExercicio)
