@@ -15,7 +15,9 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var listaEmailAlunos: ArrayList<String>
-
+    private lateinit var listaUidAlunos: ArrayList<String>
+    private lateinit var infoUsuarioSel: Usuario
+    private lateinit var listaUsuarios: ArrayList<Usuario>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consultar_alunos)
@@ -32,14 +34,25 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         mListView.setOnItemClickListener { parent, view, position, id ->
             val it = Intent(this, PerfilAlunoActivity::class.java)
             val valorLinha = mListView.adapter.getItem(position)
+            infoUsuarioSel = Usuario()
+            listaUsuarios.forEach {
+                if (it.email.equals(valorLinha.toString())) {
+                    infoUsuarioSel.email = it.email
+                    infoUsuarioSel.uid = it.uid
+                }
+            }
             it.putExtra("valorLinha", valorLinha.toString())
-            it.putStringArrayListExtra("emails",listaEmailAlunos)
+            it.putExtra("uidUsuario", infoUsuarioSel.uid)
             startActivity(it)
+
+
         }
     }
 
     private fun retornarEmailAlunos(): MutableList<String> {
         listaEmailAlunos = ArrayList()
+        listaUidAlunos = ArrayList()
+        listaUsuarios = ArrayList()
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
@@ -47,6 +60,11 @@ class ConsultarAlunosActivity : AppCompatActivity() {
                         val aluno = a.getValue(Aluno::class.java)
                         val emailAluno = getEmailAlunos(aluno!!)
                         listaEmailAlunos.add(emailAluno)
+                        listaUidAlunos.add(a.key.toString())
+                        var infoUsuario = Usuario()
+                        infoUsuario.email = emailAluno
+                        infoUsuario.uid = a.key.toString()
+                        listaUsuarios.add(infoUsuario)
                     }
                 }
             }

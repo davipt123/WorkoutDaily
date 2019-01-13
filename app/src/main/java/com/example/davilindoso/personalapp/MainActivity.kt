@@ -14,6 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
 
@@ -24,13 +25,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var nav_user: TextView? = null
     private var menuSelecionado: Int? = null
 
+    private lateinit var dbReference: DatabaseReference
+    private lateinit var database: FirebaseDatabase
+    private lateinit var ficha: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setTitle(R.string.workout_daily)
         setSupportActionBar(toolbar)
         recuperarDadosUsuario()
-
+        database = FirebaseDatabase.getInstance()
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -150,5 +155,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val fm = supportFragmentManager.beginTransaction()
         fm.replace(R.id.frameLayout, fragExercicio)
         fm.commit()
+    }
+
+    fun exibirTreino(view: View) {
+        dbReference = database.reference.child("user").child(user!!.uid).child("alunos").child(user!!.uid).child("treino")
+        ficha = ""
+        dbReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+
+                    for (a in snapshot.children) {
+                        var treino = a.getValue().toString()
+                        ficha = treino
+                    }
+
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("loadPost:onCancelled ${databaseError.toException()}")
+            }
+        })
     }
 }

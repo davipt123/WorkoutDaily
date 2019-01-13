@@ -35,8 +35,7 @@ class CriarTreinoActivity : AppCompatActivity() {
         user = auth.currentUser
         dbReference = database.reference.child("user").child(user!!.uid).child("exercicios")
         param = intent.getStringExtra("emailAluno")
-        emails = intent.getStringArrayListExtra("listaEmails")
-
+        uidUsuario = intent.getStringExtra("uidAluno")
         spExercicios = findViewById(R.id.spinExercicios)
         listaExercicio = arrayListOf("Selecione...")
         consultarExercicios()
@@ -74,9 +73,8 @@ class CriarTreinoActivity : AppCompatActivity() {
     }
 
     fun concluirTreino(view: View){
-        retornarEmailAlunos()
         dbReference = database.reference.child("user").child(user!!.uid).child("alunos").child(uidUsuario).child("treino")
-        dbReference.child("exercicios").setValue(resumoTreino)
+        dbReference.child("exercicios").setValue(resumoTreino.text)
     }
 
     fun limparExercicio(view: View){
@@ -112,33 +110,4 @@ class CriarTreinoActivity : AppCompatActivity() {
         })
     }
 
-
-    private fun retornarEmailAlunos(): MutableList<String> {
-        val listaEmailAlunos: MutableList<String> = mutableListOf()
-        val user: FirebaseUser? = auth.currentUser
-        dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
-        dbReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (a in snapshot.children) {
-                        val aluno = a.getValue(Aluno::class.java)
-                        val emailAluno = getEmailAlunos(aluno!!)
-                        if(emailAluno.equals(param)){
-                            uidUsuario = a.key.toString()
-                        }
-
-                    }
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                println("loadPost:onCancelled ${databaseError.toException()}")
-            }
-        })
-        return listaEmailAlunos
-    }
-
-    private fun getEmailAlunos(aluno: Aluno): String {
-        return aluno.email
-    }
 }

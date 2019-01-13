@@ -18,7 +18,7 @@ private lateinit var nome: TextView
 private lateinit var peso: TextView
 private lateinit var telefone: TextView
 private lateinit var param: String
-private lateinit var emails: ArrayList<String>
+private lateinit var uid: String
 
 
 class PerfilAlunoActivity : AppCompatActivity() {
@@ -53,14 +53,14 @@ class PerfilAlunoActivity : AppCompatActivity() {
 
     fun abrirActivityTreino(view: View) {
         val it = Intent(this, CriarTreinoActivity::class.java)
-        it.putExtra("emailAluno", param);
-        it.putStringArrayListExtra("listaEmails", emails)
+        it.putExtra("emailAluno", param)
+        it.putExtra("uidAluno", uid)
         startActivity(it);
     }
 
     private fun inicializarComponentes() {
-        emails = intent.getStringArrayListExtra("emails")
         param = intent.getStringExtra("valorLinha")
+        uid = intent.getStringExtra("uidUsuario")
         altura = findViewById(R.id.alturaAluno)
         cpf = findViewById(R.id.cpfAluno)
         email = findViewById(R.id.emailAluno)
