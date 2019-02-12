@@ -25,6 +25,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
+    private lateinit var uidProfessor: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +34,6 @@ class CadastrarAlunoActivity : AppCompatActivity() {
         inicializarComponentes()
         database = FirebaseDatabase.getInstance()
         auth = FirebaseAuth.getInstance()
-
-
     }
 
     private fun inicializarComponentes() {
@@ -71,6 +70,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
             progressBar.visibility = View.VISIBLE
 
             var user: FirebaseUser? = auth.currentUser
+            uidProfessor = user!!.uid
             dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
 
             auth.createUserWithEmailAndPassword(email, password)
@@ -89,6 +89,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
                         userDB.child("telefone").setValue(telefone)
                         userDB.child("cpf").setValue(cpf)
                         userDB.child("email").setValue(email)
+                        userDB.child("idProfessor").setValue(uidProfessor)
 
                         auth.signOut()
                         Toast.makeText(this,"Cadastro do aluno efetuado com sucesso. Necesário se reconectar",Toast.LENGTH_SHORT).show()

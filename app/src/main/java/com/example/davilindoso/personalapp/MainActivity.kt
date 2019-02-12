@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var database: FirebaseDatabase
     private lateinit var ficha: String
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -158,7 +159,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun exibirTreino(view: View) {
-        dbReference = database.reference.child("user").child(user!!.uid).child("alunos").child(user!!.uid).child("treino")
+        dbReference = database.reference.child("user").child("5EZyvB8V0nNw7y7dyQVv34136VF3").child("alunos").child(user!!.uid).child("treino")
         ficha = ""
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -166,7 +167,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
                     for (a in snapshot.children) {
                         var treino = a.getValue().toString()
-                        ficha = treino
+                        var treinoDiario: TextView = findViewById(R.id.treinoDiario)
+                        treinoDiario.text = treino
                     }
 
                 }
@@ -176,5 +178,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         })
+
+
+
     }
 }

@@ -18,15 +18,20 @@
 
     />
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+    <LinearLayout android:orientation="vertical" android:layout_marginTop="200dp" android:layout_width="match_parent"
+                  android:layout_height="match_parent">
 
-    <Button
-            android:onClick="exibirTreino"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Treino Diário"
-            android:background="@color/colorPrimary"
-            android:textColor="@android:color/white" android:layout_gravity="center"/>
+        <Button
+                android:onClick="exibirTreino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Treino Diário"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"/>
+
+        <TextView android:id="@+id/treinoDiario" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 
