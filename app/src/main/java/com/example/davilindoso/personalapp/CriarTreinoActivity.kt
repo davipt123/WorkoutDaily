@@ -63,22 +63,40 @@ class CriarTreinoActivity : AppCompatActivity() {
         }
     }
 
-
     fun adicionarExercicio(view: View) {
         val nomeExercicio = exercicioSelecionado.nome
         val numeroSeries = etSeries.text.toString()
         val numeroRepeticoes = etRepeticoes.text.toString()
+        if (validarCamposObrigatorios()) {
+            resumoTreino.text = String.format(
+                "%s%s",
+                resumoTreino.text,
+                montarStringExercicio(nomeExercicio, numeroSeries, numeroRepeticoes)
+            )
+            limparCampos()
+        } else {
+            Toast.makeText(this, "Preencher todos os campos", Toast.LENGTH_LONG).show()
+        }
 
-        resumoTreino.text = String.format("%s%s",resumoTreino.text,montarStringExercicio(nomeExercicio, numeroSeries, numeroRepeticoes))
     }
 
-    fun concluirTreino(view: View){
-        dbReference = database.reference.child("user").child(user!!.uid).child("alunos").child(uidUsuario).child("treino")
+    fun concluirTreino(view: View) {
+        dbReference =
+            database.reference.child("user").child(user!!.uid).child("alunos").child(uidUsuario).child("treino")
         dbReference.child("exercicios").setValue(resumoTreino.text)
     }
 
-    fun limparExercicio(view: View){
+    fun limparExercicio(view: View) {
+        limparCampos()
         resumoTreino.text = ""
+    }
+
+    fun limparCampos() {
+        var charSequence:CharSequence = ""
+
+        spExercicios.setSelection(0)
+        etSeries.setText(charSequence)
+        etRepeticoes.setText(charSequence)
     }
 
     private fun montarStringExercicio(nome: String, series: String, repeticoes: String): String {
@@ -98,7 +116,7 @@ class CriarTreinoActivity : AppCompatActivity() {
                         listaConsultaExercicios.add(exercicio!!)
                     }
 
-                    for (a in listaConsultaExercicios){
+                    for (a in listaConsultaExercicios) {
                         listaExercicio.add(a.nome)
                     }
                 }
@@ -108,6 +126,17 @@ class CriarTreinoActivity : AppCompatActivity() {
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         })
+    }
+
+    private fun validarCamposObrigatorios(): Boolean {
+        var exercicioSelecionado = !spExercicios.selectedItemPosition.equals(0)
+        var numeroSeriesInformado = !etSeries.text.isEmpty()
+        var numeroRepeticoesInformado = !etRepeticoes.text.isEmpty()
+        if (exercicioSelecionado && numeroSeriesInformado && numeroRepeticoesInformado) {
+            return true
+        } else {
+            return false
+        }
     }
 
 }
