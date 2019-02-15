@@ -21,16 +21,15 @@ class AlunosFragment : Fragment() {
     private lateinit var listaUidAlunos: ArrayList<String>
     private lateinit var progressBar: ProgressBar
     private lateinit var listaUsuarios: ArrayList<Usuario>
+    private lateinit var listaUidUsuarios: ArrayList<String>
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var viewMain: View
     private lateinit var it: Intent
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = LayoutInflater.from(container?.context).inflate(R.layout.alunos_layout, container, false)
-
-        viewMain = LayoutInflater.from(container?.context).inflate(R.layout.content_main, container, false)
-        val mListView: ListView = view.findViewById(R.id.listaMenuAluno)
+        viewMain = LayoutInflater.from(container?.context).inflate(R.layout.alunos_layout, container, false)
+        val mListView: ListView = viewMain.findViewById(R.id.listaMenuAluno)
 
         val values = arrayListOf("Cadastrar Aluno", "Alunos")
         val adapter = ArrayAdapter<String>(context!!, android.R.layout.simple_list_item_1, values)
@@ -45,7 +44,7 @@ class AlunosFragment : Fragment() {
             }
         }
 
-        return view
+        return viewMain
     }
 
     private fun iniciarAtividadeListaAlunos() {
@@ -58,9 +57,10 @@ class AlunosFragment : Fragment() {
         listaEmailAlunos = ArrayList()
         listaUidAlunos = ArrayList()
         listaUsuarios = ArrayList()
+        listaUidUsuarios = ArrayList()
         var count = 0
 
-        progressBar = viewMain!!.findViewById(R.id.progressBarAlunos)
+        progressBar = viewMain.findViewById(R.id.progressBarAlunos)
         progressBar.visibility = View.VISIBLE
         auth = FirebaseAuth.getInstance()
         val user: FirebaseUser? = auth.currentUser
@@ -81,11 +81,13 @@ class AlunosFragment : Fragment() {
                         infoUsuario.email = emailAluno
                         infoUsuario.uid = a.key.toString()
                         listaUsuarios.add(infoUsuario)
+                        listaUidUsuarios.add(infoUsuario.uid)
 
                         if (count >= snapshot.childrenCount) {
                             //stop progress bar here
                             progressBar.visibility = View.INVISIBLE
                             it.putStringArrayListExtra("listaAlunos",listaEmailAlunos)
+                            it.putStringArrayListExtra("listaUid",listaUidUsuarios)
                             startActivity(it)
                         }
                     }

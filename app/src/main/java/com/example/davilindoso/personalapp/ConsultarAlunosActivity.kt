@@ -17,6 +17,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     private lateinit var infoUsuarioSel: Usuario
     private lateinit var listaUsuarios: ArrayList<Usuario>
     private lateinit var listaEmailAlunos: ArrayList<String>
+    private lateinit var listaUidAlunos: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +29,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
         listaAlunos = mutableListOf()
         listaEmailAlunos = intent.getStringArrayListExtra("listaAlunos")
+        listaUidAlunos = intent.getStringArrayListExtra("listaUid")
         val mListView: ListView = findViewById(R.id.listaAlunosCadastrados)
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaEmailAlunos)
         mListView.adapter = adapter
@@ -38,11 +40,14 @@ class ConsultarAlunosActivity : AppCompatActivity() {
             val it = Intent(this, PerfilAlunoActivity::class.java)
             val valorLinha = mListView.adapter.getItem(position)
             infoUsuarioSel = Usuario()
-            listaUsuarios.forEach {
-                if (it.email.equals(valorLinha.toString())) {
-                    infoUsuarioSel.email = it.email
-                    infoUsuarioSel.uid = it.uid
+            var index = 0;
+            listaEmailAlunos.forEach {
+                if (valorLinha == it) {
+                    infoUsuarioSel.email = it
+                    infoUsuarioSel.uid = listaUidAlunos.get(index)
                 }
+
+                index++
             }
             it.putExtra("valorLinha", valorLinha.toString())
             it.putExtra("uidUsuario", infoUsuarioSel.uid)

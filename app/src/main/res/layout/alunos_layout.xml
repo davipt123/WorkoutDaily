@@ -5,6 +5,16 @@
         android:layout_height="match_parent"
         android:background="@android:color/white">
 
+    <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <ProgressBar
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="gone"
+                android:id="@+id/progressBarAlunos"/>
+    </LinearLayout>
+
     <ListView
             android:id="@+id/listaMenuAluno"
             android:layout_width="match_parent"
