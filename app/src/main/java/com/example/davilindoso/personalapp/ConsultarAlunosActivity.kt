@@ -14,10 +14,10 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
-    private lateinit var listaEmailAlunos: ArrayList<String>
-    private lateinit var listaUidAlunos: ArrayList<String>
     private lateinit var infoUsuarioSel: Usuario
     private lateinit var listaUsuarios: ArrayList<Usuario>
+    private lateinit var listaEmailAlunos: ArrayList<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_consultar_alunos)
@@ -27,9 +27,12 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         val user: FirebaseUser? = auth.currentUser
         dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
         listaAlunos = mutableListOf()
+        listaEmailAlunos = intent.getStringArrayListExtra("listaAlunos")
         val mListView: ListView = findViewById(R.id.listaAlunosCadastrados)
-        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, retornarEmailAlunos())
+        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaEmailAlunos)
         mListView.adapter = adapter
+
+
 
         mListView.setOnItemClickListener { parent, view, position, id ->
             val it = Intent(this, PerfilAlunoActivity::class.java)
@@ -45,38 +48,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
             it.putExtra("uidUsuario", infoUsuarioSel.uid)
             startActivity(it)
 
-
         }
     }
 
-    private fun retornarEmailAlunos(): MutableList<String> {
-        listaEmailAlunos = ArrayList()
-        listaUidAlunos = ArrayList()
-        listaUsuarios = ArrayList()
-        dbReference.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    for (a in snapshot.children) {
-                        val aluno = a.getValue(Aluno::class.java)
-                        val emailAluno = getEmailAlunos(aluno!!)
-                        listaEmailAlunos.add(emailAluno)
-                        listaUidAlunos.add(a.key.toString())
-                        var infoUsuario = Usuario()
-                        infoUsuario.email = emailAluno
-                        infoUsuario.uid = a.key.toString()
-                        listaUsuarios.add(infoUsuario)
-                    }
-                }
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                println("loadPost:onCancelled ${databaseError.toException()}")
-            }
-        })
-        return listaEmailAlunos
-    }
-
-    private fun getEmailAlunos(aluno: Aluno): String {
-        return aluno.email
-    }
 }
