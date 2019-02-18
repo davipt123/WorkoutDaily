@@ -1,4 +1,4 @@
-package com.example.davilindoso.personalapp
+package com.example.davilindoso.personalapp.model.enums
 
 enum class Corpo(val codigo: Int, val nome: String) {
     BRACO(1, "Braço"),

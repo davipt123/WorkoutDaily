@@ -1,10 +1,15 @@
-package com.example.davilindoso.personalapp
+package com.example.davilindoso.personalapp.controller.exercicio
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import com.example.davilindoso.personalapp.MainActivity
+import com.example.davilindoso.personalapp.R
+import com.example.davilindoso.personalapp.model.enums.Corpo
+import com.example.davilindoso.personalapp.model.enums.Dificuldade
+import com.example.davilindoso.personalapp.model.vo.Exercicio
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -12,7 +17,8 @@ import com.google.firebase.database.FirebaseDatabase
 
 class CadastrarExercicioActivity : AppCompatActivity() {
 
-    var exercicio: Exercicio = Exercicio()
+    var exercicio: Exercicio =
+        Exercicio()
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth

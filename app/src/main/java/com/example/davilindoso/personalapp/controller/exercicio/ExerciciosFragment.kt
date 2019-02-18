@@ -1,4 +1,4 @@
-package com.example.davilindoso.personalapp
+package com.example.davilindoso.personalapp.controller.exercicio
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import com.example.davilindoso.personalapp.R
 
 class ExerciciosFragment : Fragment() {
 

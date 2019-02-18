@@ -1,10 +1,13 @@
-package com.example.davilindoso.personalapp
+package com.example.davilindoso.personalapp.controller.aluno
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import com.example.davilindoso.personalapp.R
+import com.example.davilindoso.personalapp.model.vo.Aluno
+import com.example.davilindoso.personalapp.model.vo.Usuario
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*

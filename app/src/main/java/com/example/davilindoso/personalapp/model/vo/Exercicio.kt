@@ -1,4 +1,4 @@
-package com.example.davilindoso.personalapp
+package com.example.davilindoso.personalapp.model.vo
 
 data class Exercicio(
     var parteDoCorpo: String = "",

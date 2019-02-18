@@ -1,4 +1,4 @@
-package com.example.davilindoso.personalapp
+package com.example.davilindoso.personalapp.controller.auth
 
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.example.davilindoso.personalapp.MainActivity
+import com.example.davilindoso.personalapp.R
 
 class LoginActivity : AppCompatActivity() {
 

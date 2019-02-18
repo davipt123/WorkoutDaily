@@ -12,6 +12,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import com.example.davilindoso.personalapp.controller.aluno.AlunosFragment
+import com.example.davilindoso.personalapp.controller.exercicio.ExerciciosFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*

@@ -37,24 +37,24 @@
                 android:name=".MapsActivity"
                 android:label="@string/title_activity_maps">
         </activity>
-        <activity android:name=".LoginActivity">
+        <activity android:name=".controller.auth.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterActivity"/>
-        <activity android:name=".ForgotPassActivity"/>
-        <activity android:name=".CadastrarAlunoActivity">
+        <activity android:name=".controller.auth.RegisterActivity"/>
+        <activity android:name=".controller.auth.ForgotPassActivity"/>
+        <activity android:name=".controller.aluno.CadastrarAlunoActivity">
         </activity>
-        <activity android:name=".ConsultarAlunosActivity">
+        <activity android:name=".controller.aluno.ConsultarAlunosActivity">
         </activity>
-        <activity android:name=".PerfilAlunoActivity">
+        <activity android:name=".controller.aluno.PerfilAlunoActivity">
         </activity>
-        <activity android:name=".CadastrarExercicioActivity">
+        <activity android:name=".controller.exercicio.CadastrarExercicioActivity">
         </activity>
-        <activity android:name=".CriarTreinoActivity">
+        <activity android:name=".controller.treino.CriarTreinoActivity">
         </activity>
     </application>
 
