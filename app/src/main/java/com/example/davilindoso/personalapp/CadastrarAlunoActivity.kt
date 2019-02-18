@@ -71,7 +71,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
 
             var user: FirebaseUser? = auth.currentUser
             uidProfessor = user!!.uid
-            dbReference = database.reference.child("user").child(user!!.uid).child("alunos")
+            dbReference = database.reference.child("user").child(user.uid).child("alunos")
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->

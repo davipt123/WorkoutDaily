@@ -15,7 +15,6 @@ class ConsultarAlunosActivity : AppCompatActivity() {
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
     private lateinit var infoUsuarioSel: Usuario
-    private lateinit var listaUsuarios: ArrayList<Usuario>
     private lateinit var listaEmailAlunos: ArrayList<String>
     private lateinit var listaUidAlunos: ArrayList<String>
 
@@ -40,7 +39,7 @@ class ConsultarAlunosActivity : AppCompatActivity() {
             val it = Intent(this, PerfilAlunoActivity::class.java)
             val valorLinha = mListView.adapter.getItem(position)
             infoUsuarioSel = Usuario()
-            var index = 0;
+            var index = 0
             listaEmailAlunos.forEach {
                 if (valorLinha == it) {
                     infoUsuarioSel.email = it

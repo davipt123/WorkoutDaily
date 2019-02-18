@@ -7,8 +7,6 @@ import android.widget.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
-import org.w3c.dom.Text
-import java.nio.file.Files
 
 class CriarTreinoActivity : AppCompatActivity() {
 
@@ -23,7 +21,6 @@ class CriarTreinoActivity : AppCompatActivity() {
     private lateinit var spExercicios: Spinner
     private lateinit var exercicioSelecionado: Exercicio
     private lateinit var resumoTreino: TextView
-    private lateinit var emails: ArrayList<String>
     private lateinit var uidUsuario: String
     private var user: FirebaseUser? = null
 
@@ -56,7 +53,7 @@ class CriarTreinoActivity : AppCompatActivity() {
             }
 
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                var selecionado = spExercicios.selectedItem
+                val selecionado = spExercicios.selectedItem
                 exercicioSelecionado = Exercicio()
                 exercicioSelecionado.nome = selecionado.toString()
             }
@@ -91,8 +88,8 @@ class CriarTreinoActivity : AppCompatActivity() {
         resumoTreino.text = ""
     }
 
-    fun limparCampos() {
-        var charSequence:CharSequence = ""
+    private fun limparCampos() {
+        val charSequence:CharSequence = ""
 
         spExercicios.setSelection(0)
         etSeries.setText(charSequence)
@@ -129,9 +126,9 @@ class CriarTreinoActivity : AppCompatActivity() {
     }
 
     private fun validarCamposObrigatorios(): Boolean {
-        var exercicioSelecionado = !spExercicios.selectedItemPosition.equals(0)
-        var numeroSeriesInformado = !etSeries.text.isEmpty()
-        var numeroRepeticoesInformado = !etRepeticoes.text.isEmpty()
+        val exercicioSelecionado = !spExercicios.selectedItemPosition.equals(0)
+        val numeroSeriesInformado = !etSeries.text.isEmpty()
+        val numeroRepeticoesInformado = !etRepeticoes.text.isEmpty()
         if (exercicioSelecionado && numeroSeriesInformado && numeroRepeticoesInformado) {
             return true
         } else {

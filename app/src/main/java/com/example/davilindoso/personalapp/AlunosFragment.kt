@@ -1,6 +1,5 @@
 package com.example.davilindoso.personalapp
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -77,7 +76,7 @@ class AlunosFragment : Fragment() {
                         val emailAluno = getEmailAlunos(aluno!!)
                         listaEmailAlunos.add(emailAluno)
                         listaUidAlunos.add(a.key.toString())
-                        var infoUsuario = Usuario()
+                        val infoUsuario = Usuario()
                         infoUsuario.email = emailAluno
                         infoUsuario.uid = a.key.toString()
                         listaUsuarios.add(infoUsuario)

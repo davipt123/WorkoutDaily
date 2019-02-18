@@ -55,7 +55,7 @@ class PerfilAlunoActivity : AppCompatActivity() {
         val it = Intent(this, CriarTreinoActivity::class.java)
         it.putExtra("emailAluno", param)
         it.putExtra("uidAluno", uid)
-        startActivity(it);
+        startActivity(it)
     }
 
     private fun inicializarComponentes() {

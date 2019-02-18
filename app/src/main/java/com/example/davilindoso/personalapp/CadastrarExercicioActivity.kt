@@ -37,7 +37,7 @@ class CadastrarExercicioActivity : AppCompatActivity() {
         val dificuldadeExercicio = exercicio.dificuldade
         val parteCorpoExercicio = exercicio.parteDoCorpo
 
-        var user: FirebaseUser? = auth.currentUser
+        val user: FirebaseUser? = auth.currentUser
         dbReference = database.reference.child("user").child(user!!.uid).child("exercicios").child(nomeExercicio)
 
         dbReference.child("nome").setValue(nomeExercicio)
@@ -49,7 +49,7 @@ class CadastrarExercicioActivity : AppCompatActivity() {
     }
 
     private fun onSelectNivelExercicio() {
-        var values = arrayListOf("Selecione...", "Fácil", "Moderado", "Difícil")
+        val values = arrayListOf("Selecione...", "Fácil", "Moderado", "Difícil")
         val spDificuldade: Spinner = findViewById(R.id.spinNivelExercicio)
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, values)
         spDificuldade.adapter = adapter
@@ -64,7 +64,7 @@ class CadastrarExercicioActivity : AppCompatActivity() {
     }
 
     private fun onSelectParteCorpo() {
-        var values = arrayListOf("Selecione...")
+        val values = arrayListOf("Selecione...")
         Corpo.values().forEach {
             values.add(it.nome)
         }

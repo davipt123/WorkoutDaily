@@ -166,8 +166,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 if (snapshot.exists()) {
 
                     for (a in snapshot.children) {
-                        var treino = a.getValue().toString()
-                        var treinoDiario: TextView = findViewById(R.id.treinoDiario)
+                        val treino = a.value.toString()
+                        val treinoDiario: TextView = findViewById(R.id.treinoDiario)
                         treinoDiario.text = treino
                     }
 
