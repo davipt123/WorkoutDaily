@@ -29,6 +29,7 @@ class AlunosFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var viewMain: View
     private lateinit var it: Intent
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewMain = LayoutInflater.from(container?.context).inflate(R.layout.alunos_layout, container, false)
         val mListView: ListView = viewMain.findViewById(R.id.listaMenuAluno)
@@ -52,7 +53,6 @@ class AlunosFragment : Fragment() {
     private fun iniciarAtividadeListaAlunos() {
         it = Intent(context, ConsultarAlunosActivity::class.java)
         retornarEmailAlunos()
-
     }
 
     private fun retornarEmailAlunos(): ArrayList<String> {
@@ -73,6 +73,8 @@ class AlunosFragment : Fragment() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
+                    listaEmailAlunos.clear()
+                    listaUidAlunos.clear()
                     for (a in snapshot.children) {
                         count++;
                         val aluno = a.getValue(Aluno::class.java)
@@ -88,8 +90,8 @@ class AlunosFragment : Fragment() {
                         if (count >= snapshot.childrenCount) {
                             //stop progress bar here
                             progressBar.visibility = View.INVISIBLE
-                            it.putStringArrayListExtra("listaAlunos",listaEmailAlunos)
-                            it.putStringArrayListExtra("listaUid",listaUidUsuarios)
+                            it.putStringArrayListExtra("listaAlunos", listaEmailAlunos)
+                            it.putStringArrayListExtra("listaUid", listaUidUsuarios)
                             startActivity(it)
                         }
                     }

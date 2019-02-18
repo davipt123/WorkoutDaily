@@ -36,8 +36,6 @@ class ConsultarAlunosActivity : AppCompatActivity() {
         val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listaEmailAlunos)
         mListView.adapter = adapter
 
-
-
         mListView.setOnItemClickListener { parent, view, position, id ->
             val it = Intent(this, PerfilAlunoActivity::class.java)
             val valorLinha = mListView.adapter.getItem(position)

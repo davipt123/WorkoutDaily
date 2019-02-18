@@ -106,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             ExerciciosFragment().id -> {
                 startActivity(Intent(this, MainActivity::class.java))
             }
-            else -> Toast.makeText(this, "Ta maluco?", Toast.LENGTH_LONG).show()
+            else -> Toast.makeText(this, "Deslize novamente implementar", Toast.LENGTH_LONG).show()
         }
     }
 
