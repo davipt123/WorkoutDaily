@@ -91,6 +91,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
                         userDB.child("telefone").setValue(telefone)
                         userDB.child("cpf").setValue(cpf)
                         userDB.child("email").setValue(email)
+                        userDB.child("perfilProfessor").setValue(false)
                         userDB.child("idProfessor").setValue(uidProfessor)
 
                         auth.signOut()

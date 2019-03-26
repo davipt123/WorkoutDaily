@@ -10,10 +10,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.example.davilindoso.personalapp.controller.aluno.AlunosFragment
 import com.example.davilindoso.personalapp.controller.exercicio.ExerciciosFragment
+import com.example.davilindoso.personalapp.model.vo.Aluno
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -30,6 +32,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var ficha: String
+    private lateinit var indicadorProfessor: String
+    private lateinit var aluno: Aluno
+    private lateinit var view_aluno: LinearLayout
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,8 +42,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(R.layout.activity_main)
         setTitle(R.string.workout_daily)
         setSupportActionBar(toolbar)
-        recuperarDadosUsuario()
         database = FirebaseDatabase.getInstance()
+        recuperarDadosUsuario()
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -88,6 +93,38 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else {
             Toast.makeText(this, "Não foi possível recuperar email do Usuário", Toast.LENGTH_LONG).show()
         }
+        recuperarDadosComplementaresUsuario()
+    }
+
+    private fun recuperarDadosComplementaresUsuario() {
+        dbReference = database.reference.child("user").child(user!!.uid)
+        view_aluno = findViewById(R.id.view_aluno)
+        consultarIndicadorProfessorFirebase()
+
+    }
+
+    private fun consultarIndicadorProfessorFirebase() {
+        dbReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    for (a in snapshot.children) {
+                        val consulta = a.getValue(Aluno::class.java)
+                        aluno = Aluno()
+                        aluno.perfilProfessor = consulta!!.perfilProfessor
+                        if (aluno.perfilProfessor.equals("false")) {
+                            view_aluno.visibility = View.VISIBLE
+                        } else {
+                            view_aluno.visibility = View.INVISIBLE
+                        }
+                        break
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                println("loadPost:onCancelled ${databaseError.toException()}")
+            }
+        })
     }
 
     override fun onBackPressed() {
@@ -161,7 +198,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun exibirTreino(view: View) {
-        dbReference = database.reference.child("user").child("5EZyvB8V0nNw7y7dyQVv34136VF3").child("alunos").child(user!!.uid).child("treino")
+        dbReference =
+            database.reference.child("user").child("5EZyvB8V0nNw7y7dyQVv34136VF3").child("alunos").child(user!!.uid)
+                .child("treino")
         ficha = ""
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -180,7 +219,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 println("loadPost:onCancelled ${databaseError.toException()}")
             }
         })
-
 
 
     }

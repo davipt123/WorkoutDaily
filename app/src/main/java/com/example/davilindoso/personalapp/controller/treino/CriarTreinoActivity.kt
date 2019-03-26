@@ -1,13 +1,10 @@
 package com.example.davilindoso.personalapp.controller.treino
 
-import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
-import com.example.davilindoso.personalapp.MainActivity
 import com.example.davilindoso.personalapp.R
-import com.example.davilindoso.personalapp.controller.auth.LoginActivity
 import com.example.davilindoso.personalapp.model.vo.Exercicio
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

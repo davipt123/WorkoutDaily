@@ -7,7 +7,8 @@ data class Aluno(
     var peso: String = "",
     var cpf: String = "",
     var telefone: String = "",
-    var email: String = ""
+    var email: String = "",
+    var perfilProfessor: String = ""
 ) {
-    constructor() : this("", "", "", "", "", "", "")
+    constructor() : this("", "", "", "", "", "", "", "")
 }
