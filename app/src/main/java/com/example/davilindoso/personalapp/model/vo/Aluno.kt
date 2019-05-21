@@ -9,6 +9,8 @@ data class Aluno(
     var telefone: String = "",
     var email: String = "",
     var perfilProfessor: String = ""
-) {
+
+)
+{
     constructor() : this("", "", "", "", "", "", "", "")
 }

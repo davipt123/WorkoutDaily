@@ -23,7 +23,7 @@ class CadastrarAlunoActivity : AppCompatActivity() {
     private lateinit var txtTelefone: EditText
     private lateinit var txtEmail: EditText
     private lateinit var txtPassword: EditText
-        private lateinit var progressBar: ProgressBar
+    private lateinit var progressBar: ProgressBar
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var auth: FirebaseAuth
@@ -91,11 +91,26 @@ class CadastrarAlunoActivity : AppCompatActivity() {
                         userDB.child("telefone").setValue(telefone)
                         userDB.child("cpf").setValue(cpf)
                         userDB.child("email").setValue(email)
-                        userDB.child("perfilProfessor").setValue(false)
+                        userDB.child("perfilProfessor").setValue(false.toString())
                         userDB.child("idProfessor").setValue(uidProfessor)
 
+                        //val dbReferenceAlunos = database.reference.child("alunos")
+                        //val alunoDB = dbReferenceAlunos.child(user?.uid.toString())
+                        //alunoDB.child("name").setValue(name)
+                        //alunoDB.child("idade").setValue(idade)
+                        //alunoDB.child("altura").setValue(altura)
+                        // alunoDB.child("peso").setValue(peso)
+                        //alunoDB.child("telefone").setValue(telefone)
+                        //alunoDB.child("cpf").setValue(cpf)
+                        //alunoDB.child("email").setValue(email)
+                        //alunoDB.child("perfilProfessor").setValue(false)
+                        //alunoDB.child("idProfessor").setValue(uidProfessor)
                         auth.signOut()
-                        Toast.makeText(this,"Cadastro do aluno efetuado com sucesso. Necesário se reconectar",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            this,
+                            "Cadastro do aluno efetuado com sucesso. Necesário se reconectar",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         startActivity(Intent(this, LoginActivity::class.java))
                     }
                 }

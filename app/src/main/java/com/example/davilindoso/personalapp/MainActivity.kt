@@ -1,6 +1,7 @@
 package com.example.davilindoso.personalapp
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.NavigationView
@@ -16,6 +17,7 @@ import android.widget.Toast
 import com.example.davilindoso.personalapp.controller.aluno.AlunosFragment
 import com.example.davilindoso.personalapp.controller.exercicio.ExerciciosFragment
 import com.example.davilindoso.personalapp.model.vo.Aluno
+import com.example.davilindoso.personalapp.model.vo.Professor
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -97,7 +99,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun recuperarDadosComplementaresUsuario() {
-        dbReference = database.reference.child("user").child(user!!.uid)
+        dbReference = database.reference.child("user")
         view_aluno = findViewById(R.id.view_aluno)
         consultarIndicadorProfessorFirebase()
 
@@ -107,17 +109,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                    for (a in snapshot.children) {
-                        val consulta = a.getValue(Aluno::class.java)
-                        aluno = Aluno()
-                        aluno.perfilProfessor = consulta!!.perfilProfessor
-                        if (aluno.perfilProfessor.equals("false")) {
-                            view_aluno.visibility = View.VISIBLE
-                        } else {
-                            view_aluno.visibility = View.INVISIBLE
+                        for (a in snapshot.children) {
+                        val value = a.getValue(Professor::class.java)
+                        value!!.alunos.forEach(){
+                            if(it.key.compareTo(user!!.uid) == 0){
+                                view_aluno.visibility = View.VISIBLE
+                            }else{
+                                view_aluno.visibility = View.INVISIBLE
+                            }
+
                         }
-                        break
-                    }
+                            break
+                        }
                 }
             }
 
