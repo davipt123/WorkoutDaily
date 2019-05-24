@@ -116,9 +116,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                             val filhos = chaveUsuario.children.iterator()
                             while (filhos.hasNext()) {
                                 val aluno = filhos.next()
-                                aluno.value.toString().split(",").forEach(){
-                                    if(it.contains(user!!.uid)){
+                                aluno.value.toString().split(",").forEach() {
+                                    if (it.contains(user!!.uid)) {
                                         view_aluno.visibility = View.INVISIBLE
+                                    } else if (it.contains("idProfessor")) {
+                                        uidProfessor = it.replace("=", "").replace("idProfessor", "").replace("{", "")
+                                            .replace("}", "").trim()
                                     }
                                 }
                             }
