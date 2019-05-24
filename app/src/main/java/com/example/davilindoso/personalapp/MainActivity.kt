@@ -34,8 +34,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private lateinit var dbReference: DatabaseReference
     private lateinit var database: FirebaseDatabase
     private lateinit var ficha: String
-    private lateinit var indicadorProfessor: String
-    private lateinit var aluno: Aluno
+    private lateinit var uidProfessor: String
     private lateinit var view_aluno: LinearLayout
 
 
@@ -109,18 +108,22 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         dbReference.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 if (snapshot.exists()) {
-                        for (a in snapshot.children) {
-                        val value = a.getValue(Professor::class.java)
-                        value!!.alunos.forEach(){
-                            if(it.key.compareTo(user!!.uid) == 0){
-                                view_aluno.visibility = View.VISIBLE
-                            }else{
-                                view_aluno.visibility = View.INVISIBLE
+                    for (a in snapshot.children) {
+                        val professor = a.children
+                        val professores = professor.iterator()
+                        while (professores.hasNext()) {
+                            val chaveUsuario = professores.next()
+                            val filhos = chaveUsuario.children.iterator()
+                            while (filhos.hasNext()) {
+                                val aluno = filhos.next()
+                                aluno.value.toString().split(",").forEach(){
+                                    if(it.contains(user!!.uid)){
+                                        view_aluno.visibility = View.INVISIBLE
+                                    }
+                                }
                             }
-
                         }
-                            break
-                        }
+                    }
                 }
             }
 
@@ -202,7 +205,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fun exibirTreino(view: View) {
         dbReference =
-            database.reference.child("user").child("5EZyvB8V0nNw7y7dyQVv34136VF3").child("alunos").child(user!!.uid)
+            database.reference.child("user").child(uidProfessor).child("alunos").child(user!!.uid)
                 .child("treino")
         ficha = ""
         dbReference.addValueEventListener(object : ValueEventListener {
